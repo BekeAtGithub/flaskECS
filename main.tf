@@ -65,22 +65,22 @@ resource "aws_security_group" "ecs_sg" {
   }
 }
 
-# RDS MySQL Database
-resource "aws_db_instance" "mysql" {
-  allocated_storage    = 20
-  storage_type         = "gp2"
-  engine               = "mysql"
-  engine_version       = "8.0"
-  instance_class       = "db.t3.micro"
-  identifier           = "my-app-db"
-  db_name              = "mydb"
-  username             = "admin"
-  password             = "password" # Use environment variables for better security
-  publicly_accessible  = false
-  skip_final_snapshot  = true
-  vpc_security_group_ids = [aws_security_group.ecs_sg.id]
-  db_subnet_group_name = aws_db_subnet_group.rds_subnet.id
-}
+## RDS MySQL Database
+#resource "aws_db_instance" "mysql" {
+#  allocated_storage    = 20
+#  storage_type         = "gp2"
+#  engine               = "mysql"
+#  engine_version       = "8.0"
+#  instance_class       = "db.t3.micro"
+#  identifier           = "my-app-db"
+#  db_name              = "mydb"
+#  username             = "admin"
+#  password             = "password" # Use environment variables for better security
+#  publicly_accessible  = false
+#  skip_final_snapshot  = true
+#  vpc_security_group_ids = [aws_security_group.ecs_sg.id]
+#  db_subnet_group_name = aws_db_subnet_group.rds_subnet.id
+#}
 
 # RDS Subnet Group
 resource "aws_db_subnet_group" "rds_subnet" {
@@ -171,22 +171,22 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
 
 
 # Application Load Balancer
-resource "aws_lb" "app_lb" {
-  name               = "app-lb"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.ecs_sg.id]
-  subnets            = aws_subnet.public_subnet[*].id
-}
-
-# Target Group for the Load Balancer
-resource "aws_lb_target_group" "app_target_group" {
-  name        = "app-targets"
-  port        = 5000
-  protocol    = "HTTP"
-  vpc_id      = aws_vpc.main_vpc.id
-  target_type = "ip"
-}
+#resource "aws_lb" "app_lb" {
+#  name               = "app-lb"
+#  internal           = false
+#  load_balancer_type = "application"
+#  security_groups    = [aws_security_group.ecs_sg.id]
+#  subnets            = aws_subnet.public_subnet[*].id
+#}
+#
+## Target Group for the Load Balancer
+#resource "aws_lb_target_group" "app_target_group" {
+#  name        = "app-targets"
+#  port        = 5000
+#  protocol    = "HTTP"
+#  vpc_id      = aws_vpc.main_vpc.id
+#  target_type = "ip"
+#}
 
 # Listener for the Application Load Balancer
 resource "aws_lb_listener" "app_listener" {
