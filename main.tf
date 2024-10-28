@@ -67,19 +67,19 @@ resource "aws_security_group" "ecs_sg" {
 
 # RDS MySQL Database
 resource "aws_db_instance" "mysql" {
-  allocated_storage    = 20
-  storage_type         = "gp2"
-  engine               = "mysql"
-  engine_version       = "8.0"
-  instance_class       = "db.t3.micro"
-  identifier           = "my-app-db"
-  db_name              = "mydb"
-  username             = "admin"
-  password             = "password" # Use environment variables for better security
-  publicly_accessible  = false
-  skip_final_snapshot  = true
+  allocated_storage      = 20
+  storage_type           = "gp2"
+  engine                 = "mysql"
+  engine_version         = "8.0"
+  instance_class         = "db.t3.micro"
+  identifier             = "my-app-db"
+  db_name                = "mydb"
+  username               = "admin"
+  password               = "password" # Use environment variables for better security
+  publicly_accessible    = false
+  skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.ecs_sg.id]
-  db_subnet_group_name = aws_db_subnet_group.rds_subnet.id
+  db_subnet_group_name   = aws_db_subnet_group.rds_subnet.id
 }
 
 # RDS Subnet Group
@@ -135,8 +135,8 @@ resource "aws_ecs_service" "ecs_service" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets         = aws_subnet.public_subnet[*].id
-    security_groups = [aws_security_group.ecs_sg.id]
+    subnets          = aws_subnet.public_subnet[*].id
+    security_groups  = [aws_security_group.ecs_sg.id]
     assign_public_ip = true
   }
 
@@ -154,8 +154,8 @@ resource "aws_iam_role" "ecs_task_execution_role" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Action    = "sts:AssumeRole"
-      Effect    = "Allow"
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
       Principal = {
         Service = "ecs-tasks.amazonaws.com"
       }
