@@ -120,3 +120,6 @@ To avoid ongoing charges for the AWS resources provisioned, destroy the infrastr
 terraform destroy
 
 This will remove all the AWS resources created by the Terraform configuration.
+
+
+![alt text](https://github.com/BekeAtGithub/flaskECS/blob/master/FlaskECS.png)
