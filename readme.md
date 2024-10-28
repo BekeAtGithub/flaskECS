@@ -25,7 +25,7 @@ Before proceeding, ensure you have the following:
 - AWS CLI installed and configured ([AWS CLI installation guide](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html))
 - Docker installed ([Docker installation guide](https://docs.docker.com/get-docker/))
 
-# Infrastructure Overview
+# Infrastructure Overview 
 
 The following AWS resources are provisioned via Terraform:
 
