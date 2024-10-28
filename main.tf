@@ -1,4 +1,4 @@
-# Provider configuration for AWS
+# Provider configuration for AWS 
 provider "aws" {
   region = "us-east-1" # Adjust region as necessary
 }
@@ -105,7 +105,7 @@ resource "aws_ecs_task_definition" "task" {
   container_definitions = jsonencode([
     {
       name      = "flask-app"
-      image     = "715841363697.dkr.ecr.us-east-1a.amazonaws.com/flask-hostname-app:latest" # Correct image URI
+      image     = "715841363697.dkr.ecr.us-east-1a.amazonaws.com/flaskecs:latest" # Correct image URI
       essential = true
       portMappings = [{
         containerPort = 5000
