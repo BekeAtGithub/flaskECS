@@ -73,7 +73,7 @@ resource "aws_db_instance" "mysql" {
   engine_version       = "8.0"
   instance_class       = "db.t3.micro"
   identifier           = "my-app-db"
-  db_name                 = "mydb"
+  db_name              = "mydb"
   username             = "admin"
   password             = "password" # Use environment variables for better security
   publicly_accessible  = false
@@ -84,7 +84,7 @@ resource "aws_db_instance" "mysql" {
 
 # RDS Subnet Group
 resource "aws_db_subnet_group" "rds_subnet" {
-  name       = "my-rds-subnet-group"
+  name       = "rds-subnet-group"
   subnet_ids = aws_subnet.public_subnet[*].id
 }
 
@@ -105,7 +105,7 @@ resource "aws_ecs_task_definition" "task" {
   container_definitions = jsonencode([
     {
       name      = "flask-app"
-      image     = "715841363697.dkr.ecr.us-east-1a.amazonaws.com/flask-hostname-app:latest" # Correct image URI
+      image     = "715841363697.dkr.ecr.us-east-1a.amazonaws.com/flaskecs:latest" # Correct image URI
       essential = true
       portMappings = [{
         containerPort = 5000
