@@ -1,0 +1,62 @@
+# .circleci/config.yml
+version: 2.1
+
+executors:
+  terraform-executor:
+    docker:
+      - image: hashicorp/terraform:1.0.0  # Update to latest Terraform version as needed
+    working_directory: ~/repo
+
+jobs:
+  terraform-init:
+    executor: terraform-executor
+    steps:
+      - checkout
+      - run:
+          name: Install AWS CLI
+          command: |
+            apk add --no-cache curl
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip awscliv2.zip
+            ./aws/install
+      - run:
+          name: Terraform Init
+          command: terraform init
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  terraform-plan:
+    executor: terraform-executor
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Terraform Plan
+          command: terraform plan -out=plan.tfplan
+      - persist_to_workspace:
+          root: .
+          paths:
+            - plan.tfplan
+
+  terraform-apply:
+    executor: terraform-executor
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Terraform Apply
+          command: terraform apply -auto-approve plan.tfplan
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - terraform-init
+      - terraform-plan:
+          requires:
+            - terraform-init
+      - terraform-apply:
+          requires:
+            - terraform-plan
