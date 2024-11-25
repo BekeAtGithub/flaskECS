@@ -1,4 +1,4 @@
-# Flask App Deployment to Amazon ECS with Terraform  
+# Flask App Deployment to Amazon ECS with Terraform
 
 # Table of Contents 
 - [Project Overview](#project-overview)
