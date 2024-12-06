@@ -3,7 +3,7 @@ __pycache__/
 .DS_Store
 .vscode/
 
-# Ignore everything in the /terraform directory
+# Ignore everything in the /terraform directory 
 /terraform/
 
 # Ignore Terraform lock and state files
