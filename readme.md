@@ -12,7 +12,7 @@
 - [Accessing the App](#accessing-the-app)
 - [Troubleshooting](#troubleshooting)
 
-# Project Overview
+# Project Overview 
 
 Just a basic Flask app that shows the name and the version number. App is Dockerized and deployed to 2 ECS instances using Fargate. An Application Load Balancer handles the ingress/egress, and the app is connected to an RDS MySQL database. 
 
