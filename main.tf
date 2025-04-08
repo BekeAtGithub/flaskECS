@@ -1,7 +1,7 @@
 # Provider configuration for AWS 
 provider "aws" {
   region = "us-east-1" # Adjust region as necessary
-
+}
 
 # VPC creation
 resource "aws_vpc" "main_vpc" {
