@@ -1,6 +1,6 @@
 # Provider configuration for AWS 
 provider "aws" {
-  region = "us-east-2" # Adjust region as necessary
+  region = "us-east-1" # Adjust region as necessary
 }
 
 # VPC creation
