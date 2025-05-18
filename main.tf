@@ -3,7 +3,7 @@ provider "aws" {
   region = "us-east-1" # Adjust region as necessary
 }
 
-# VPC creation
+# VPC creation .
 resource "aws_vpc" "main_vpc" {
   cidr_block = "10.0.0.0/16"
 }
