@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Environment variable for version number 
 VERSION = "1.0"
 
-# Get the hostname (this will be dynamic depending on your system)
+# Get the hostname (this will be dynamic depending on your system) 
 HOSTNAME = os.getenv("HOSTNAME", "Node")
 
 # Counter to store the number suffix (could be managed by an external service for multiple instances)
