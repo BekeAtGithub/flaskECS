@@ -3,7 +3,7 @@ import os
 
 app = Flask(__name__)
 
-# Environment variable for version number  
+# Environment variable for version numbr
 VERSION = "1.0"
 
 # Get the hostname (this will be dynamic depending on your system) 
